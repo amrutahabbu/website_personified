@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amruta Habbu — Senior Software Engineer</title>
+  <meta name="description" content="Amruta Habbu — Senior Software Engineer. Building systems that scale and teams that thrive." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0a0f0c;
+      --bg2:     #111710;
+      --bg3:     #182018;
+      --surface: #141a14;
+      --border:  rgba(80,160,100,0.12);
+      --border2: rgba(80,160,100,0.22);
+      --text:    #e2ede6;
+      --muted:   #6a8c74;
+      --accent:  #5ec47a;
+      --accent2: #3d9458;
+      --soft:    #2d5c3a;
+      --serif:   'DM Serif Display', serif;
+      --mono:    'JetBrains Mono', monospace;
+      --sans:    'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+    .site { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 0 22px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 60px;
+      position: sticky; top: 0; background: var(--bg); z-index: 100;
+    }
+    .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.06em; cursor: pointer; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; font-family: var(--mono); letter-spacing: 0.03em; transition: color 0.2s; cursor: pointer; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 500; }
+    .hamburger { display: none; background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; }
+
+    section { display: none; animation: fadeIn 0.22s ease; }
+    section.visible { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* HERO */
+    .hero { padding: 8px 0 64px; }
+    .hero-eyebrow { font-family: var(--mono); font-size: 12px; color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 1.5px; background: var(--soft); border-radius: 2px; }
+    .hero h1 { font-family: var(--serif); font-size: clamp(40px, 7vw, 62px); line-height: 1.08; color: var(--text); }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 520px; margin: 22px 0 38px; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; padding: 5px 13px; border: 1px solid var(--border2); border-radius: 20px; color: var(--muted); background: var(--surface); }
+    .tag.hi { border-color: var(--accent2); color: var(--accent); background: var(--bg2); }
+
+    .section-label { font-family: var(--mono); font-size: 11px; color: var(--accent2); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--bg3); border-radius: 1px; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .about-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+    .about-card h3 { font-family: var(--serif); font-size: 19px; color: var(--text); margin-bottom: 10px; }
+    .about-card p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+    .about-card.wide { grid-column: 1 / -1; }
+    .about-values { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .value-chip { font-family: var(--mono); font-size: 11px; padding: 4px 11px; background: var(--bg3); border: 1px solid var(--border2); border-radius: 20px; color: var(--accent2); }
+
+    /* WORK */
+    .work-list { display: flex; flex-direction: column; }
+    .work-item { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .work-item:first-child { border-top: 1px solid var(--border); }
+    .work-date { font-family: var(--mono); font-size: 11px; color: var(--soft); padding-top: 4px; letter-spacing: 0.04em; }
+    .work-role { font-family: var(--serif); font-size: 18px; color: var(--text); margin-bottom: 3px; }
+    .work-company { font-family: var(--mono); font-size: 12px; color: var(--accent2); margin-bottom: 10px; letter-spacing: 0.04em; }
+    .work-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+    .work-skills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-pill { font-family: var(--mono); font-size: 10px; padding: 3px 9px; background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; color: var(--muted); letter-spacing: 0.03em; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: border-color 0.2s, transform 0.15s; }
+    .project-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+    .project-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
+    .project-title { font-family: var(--serif); font-size: 17px; color: var(--text); }
+    .project-status { font-family: var(--mono); font-size: 10px; padding: 3px 9px; border-radius: 20px; letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+    .status-active   { background: rgba(94,196,122,0.12); color: #5ec47a; border: 1px solid rgba(94,196,122,0.28); }
+    .status-building { background: rgba(220,170,80,0.1);  color: #c49a3a; border: 1px solid rgba(220,170,80,0.25); }
+    .status-idea     { background: var(--bg3); color: var(--muted); border: 1px solid var(--border2); }
+    .project-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    /* INTERESTS */
+    .interests-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .interest-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+    .interest-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+    .interest-name { font-family: var(--serif); font-size: 16px; color: var(--text); margin-bottom: 6px; }
+    .interest-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+
+    /* WRITING */
+    .writing-list { display: flex; flex-direction: column; }
+    .writing-item { padding: 22px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+    .writing-item:first-child { border-top: 1px solid var(--border); }
+    .writing-title { font-family: var(--serif); font-size: 17px; color: var(--text); margin-bottom: 6px; cursor: pointer; transition: color 0.2s; }
+    .writing-title:hover { color: var(--accent); }
+    .writing-meta { font-family: var(--mono); font-size: 11px; color: var(--soft); letter-spacing: 0.04em; }
+    .writing-date { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+    /* CONTACT */
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .contact-intro h2 { font-family: var(--serif); font-size: 30px; color: var(--text); line-height: 1.25; margin-bottom: 14px; }
+    .contact-intro p { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 24px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .contact-link:hover { color: var(--accent); }
+    .contact-link i { font-size: 16px; color: var(--soft); }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; background: var(--surface); border: 1px solid var(--border2); border-radius: 8px;
+      color: var(--text); font-family: var(--sans); font-size: 14px; padding: 10px 13px;
+      outline: none; transition: border-color 0.2s; appearance: none;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--soft); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(94,196,122,0.08); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .btn-primary { background: var(--accent2); color: #0a0f0c; border: none; border-radius: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; padding: 12px 24px; cursor: pointer; width: 100%; text-transform: uppercase; transition: background 0.2s, transform 0.1s; }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+    footer { border-top: 1px solid var(--border); margin-top: 64px; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy, .footer-note { font-family: var(--mono); font-size: 11px; color: var(--soft); }
+
+    @media (max-width: 640px) {
+      nav { flex-wrap: wrap; gap: 12px; }
+      .nav-links { display: none; flex-direction: column; width: 100%; gap: 16px; padding: 16px 0; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: block; }
+      .about-grid, .projects-grid, .contact-wrap { grid-template-columns: 1fr; }
+      .about-card.wide { grid-column: 1; }
+      .interests-grid { grid-template-columns: 1fr 1fr; }
+      .work-item { grid-template-columns: 1fr; gap: 4px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+    @media (max-width: 400px) { .interests-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+  CONTENT CONFIG — edit only this block to update your site.
+  No HTML knowledge needed! Just change the text in quotes.
+  ============================================================ -->
+<script>
+const CONFIG = {
+  name:    { first: "Amruta", last: "Habbu" },
+  title:   "Senior Software Engineer",
+  tagline: "I build systems that scale and teams that thrive. Somewhere between engineering rigor and human empathy lies where I do my best work.",
+  openTo:  "open to collaborations",
+  tags:    ["distributed systems", "engineering culture", "mentorship", "product thinking"],
+
+  about: {
+    long:     "I'm a Senior Software Engineer with a passion for building at the intersection of technical excellence and people-first leadership. I believe the best software is built by psychologically safe teams who are empowered to make decisions and care about craft. I gravitate toward hard distributed systems problems, API design, and the invisible work of making teams more effective.",
+    howIWork: "Async by default. Write things down. Push decisions to the people closest to the problem. Strong opinions, loosely held — I'd rather be wrong and learn fast than be certain and slow.",
+    values:   ["psychological safety", "honest feedback", "deep work", "shipping", "documentation", "empathy first"]
+  },
+
+  work: [
+    {
+      date:    "2022 — present",
+      role:    "Senior Software Engineer",
+      company: "Your Current Company",
+      desc:    "Leading design and delivery of core platform services. Partnering with product and design to define roadmap, while mentoring early-career engineers through growth milestones. Driving architectural decisions on distributed data pipelines serving millions of events daily.",
+      skills:  ["Java", "Kafka", "Kubernetes", "PostgreSQL", "System Design", "Tech Lead"]
+    },
+    {
+      date:    "2019 — 2022",
+      role:    "Software Engineer II",
+      company: "Previous Company",
+      desc:    "Owned backend microservices for a high-traffic consumer platform. Reduced p99 latency by 40% through targeted profiling and caching strategy. First engineer on the team to introduce structured incident retrospectives that became org-wide practice.",
+      skills:  ["Python", "Redis", "AWS", "REST APIs", "On-call"]
+    },
+    {
+      date:    "2017 — 2019",
+      role:    "Software Engineer",
+      company: "Early Career Company",
+      desc:    "Joined as a new grad. Shipped features across the full stack, pair-programmed extensively, and fell in love with the craft of software engineering. Had the kind of mentors that changed my whole trajectory.",
+      skills:  ["JavaScript", "React", "Node.js", "SQL"]
+    }
+  ],
+
+  projects: [
+    {
+      title:  "Retrospective OS",
+      status: "active",        // "active" | "building" | "idea"
+      desc:   "A lightweight tool for async retrospectives. Teams log wins, blockers, and learnings throughout the sprint — not just at the end. Built because most retro tools feel like meetings, not thinking.",
+      tech:   ["Next.js", "Supabase", "TypeScript"],
+      link:   ""
+    },
+    {
+      title:  "Eng Compass",
+      status: "building",
+      desc:   "Career ladder tracker for engineers who want to drive their own growth. Helps map skills, identify gaps, and prep for performance conversations without needing a manager to initiate it.",
+      tech:   ["React", "SQLite", "Go"],
+      link:   ""
+    },
+    {
+      title:  "On-call Diary",
+      status: "building",
+      desc:   "Structured incident journal for engineers on-call. Captures what happened, what was learned, and what changed — feeds into a personal incident knowledge base over time.",
+      tech:   ["Electron", "SQLite", "Markdown"],
+      link:   ""
+    },
+    {
+      title:  "Feedback Loops",
+      status: "idea",
+      desc:   "Peer feedback that doesn't feel performative. Lightweight prompts at the right cadence, anonymised aggregation, and private delivery. Because quarterly reviews are too late and too formal.",
+      tech:   ["concept", "research"],
+      link:   ""
+    }
+  ],
+
+  interests: [
+    { icon: "ti-topology-star-ring", color: "#4a9e8e", name: "Distributed Systems",  desc: "CAP theorem debates at 11pm, consensus algorithms for fun, and the quiet satisfaction of a well-designed message queue." },
+    { icon: "ti-users",              color: "#5ec47a", name: "Engineering Culture",   desc: "How teams form, fail, and fly. I read everything on psychological safety, team topologies, and what makes engineers want to come to work." },
+    { icon: "ti-school",             color: "#3d9458", name: "Mentorship",            desc: "I've had mentors who changed everything for me. Paying that forward is one of the most meaningful parts of being a senior engineer." },
+    { icon: "ti-book",               color: "#c49a3a", name: "Reading",               desc: "Non-fiction heavy: org design, cognitive science, tech history. Currently reading The Pragmatic Engineer. Always open to recs." },
+    { icon: "ti-plant",              color: "#5ec47a", name: "Systems Thinking",      desc: "Seeing how complex systems behave — in code, in orgs, in ecosystems. Donella Meadows lives rent-free in my head." },
+    { icon: "ti-writing",            color: "#4a9e8e", name: "Technical Writing",     desc: "Good docs are a gift to the future. I spend disproportionate time on READMEs, ADRs, and runbooks. No shame." }
+  ],
+
+  writing: [
+    { title: "On-call shouldn't mean on-edge: designing humane incident response", tag: "engineering culture", readTime: "6 min read", date: "Mar 2025", url: "" },
+    { title: "What I learned debugging a latency cliff that wasn't in the code",   tag: "distributed systems", readTime: "9 min read", date: "Nov 2024", url: "" },
+    { title: "The feedback I wish I'd gotten as a junior engineer",                tag: "mentorship",          readTime: "5 min read", date: "Aug 2024", url: "" },
+    { title: "ADRs as a forcing function for better architecture decisions",       tag: "process",             readTime: "4 min read", date: "Apr 2024", url: "" }
+  ],
+
+  contact: {
+    headline: "Let's talk about something real.",
+    intro:    "I'm interested in collaborations, consulting on engineering culture, advising early-stage teams, or just a good conversation about distributed systems, mentorship, or whatever you're building.",
+    github:   "github.com/amruta",
+    linkedin: "linkedin.com/in/amruta",
+    email:    "hello@amruta.dev",
+    topics:   ["collaboration on a project", "engineering culture consulting", "mentorship", "just saying hi", "something else"]
+  }
+};
+</script>
+
+<div class="site">
+  <nav>
+    <span class="nav-logo" onclick="show('about')" id="site-logo"></span>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><i class="ti ti-menu-2"></i></button>
+    <ul class="nav-links" id="nav-links">
+      <li><a onclick="show('about')"     id="nav-about"     class="active">about</a></li>
+      <li><a onclick="show('work')"      id="nav-work">work</a></li>
+      <li><a onclick="show('projects')"  id="nav-projects">projects</a></li>
+      <li><a onclick="show('interests')" id="nav-interests">interests</a></li>
+      <li><a onclick="show('writing')"   id="nav-writing">writing</a></li>
+      <li><a onclick="show('contact')"   id="nav-contact">contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="about" class="visible"></section>
+  <section id="work"></section>
+  <section id="projects"></section>
+  <section id="interests"></section>
+  <section id="writing"></section>
+  <section id="contact"></section>
+
+  <footer>
+    <div class="footer-copy" id="footer-copy"></div>
+    <div class="footer-note">built with intention, not templates.</div>
+  </footer>
+</div>
+
+<script>
+function pill(t) { return `<span class="skill-pill">${t}</span>`; }
+function statusLabel(s) {
+  const m = { active:["status-active","active"], building:["status-building","building"], idea:["status-idea","idea stage"] };
+  const [cls,lbl] = m[s]||m.idea;
+  return `<span class="project-status ${cls}">${lbl}</span>`;
+}
+
+function renderAbout() {
+  const c = CONFIG;
+  document.getElementById('site-logo').textContent = c.name.first.toLowerCase()+'.dev';
+  document.getElementById('footer-copy').textContent = `© ${new Date().getFullYear()} ${c.name.first} ${c.name.last}`;
+  document.getElementById('about').innerHTML = `
+    <div class="hero">
+      <div class="hero-eyebrow">${c.title}</div>
+      <h1>${c.name.first}<br><em>${c.name.last}</em></h1>
+      <p class="hero-sub">${c.tagline}</p>
+      <div class="hero-tags">
+        <span class="tag hi">${c.openTo}</span>
+        ${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
+      </div>
+    </div>
+    <div class="section-label">about me</div>
+    <div class="about-grid">
+      <div class="about-card wide"><h3>The long version</h3><p>${c.about.long}</p></div>
+      <div class="about-card"><h3>How I work</h3><p>${c.about.howIWork}</p></div>
+      <div class="about-card"><h3>What I value</h3><div class="about-values">${c.about.values.map(v=>`<span class="value-chip">${v}</span>`).join('')}</div></div>
+    </div>`;
+}
+
+function renderWork() {
+  document.getElementById('work').innerHTML = `
+    <div class="section-label">experience</div>
+    <div class="work-list">
+      ${CONFIG.work.map(w=>`
+        <div class="work-item">
+          <div class="work-date">${w.date}</div>
+          <div>
+            <div class="work-role">${w.role}</div>
+            <div class="work-company">// ${w.company}</div>
+            <p class="work-desc">${w.desc}</p>
+            <div class="work-skills">${w.skills.map(pill).join('')}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderProjects() {
+  document.getElementById('projects').innerHTML = `
+    <div class="section-label">pet projects</div>
+    <div class="projects-grid">
+      ${CONFIG.projects.map(p=>`
+        <div class="project-card" ${p.link?`onclick="window.open('${p.link}')" style="cursor:pointer"`:''}>
+          <div class="project-header">
+            <div class="project-title">${p.title}</div>
+            ${statusLabel(p.status)}
+          </div>
+          <p class="project-desc">${p.desc}</p>
+          <div class="project-tech">${p.tech.map(pill).join('')}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderInterests() {
+  document.getElementById('interests').innerHTML = `
+    <div class="section-label">interests</div>
+    <div class="interests-grid">
+      ${CONFIG.interests.map(i=>`
+        <div class="interest-card">
+          <i class="ti ${i.icon} interest-icon" aria-hidden="true" style="color:${i.color}"></i>
+          <div class="interest-name">${i.name}</div>
+          <p class="interest-desc">${i.desc}</p>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderWriting() {
+  document.getElementById('writing').innerHTML = `
+    <div class="section-label">writing</div>
+    <div class="writing-list">
+      ${CONFIG.writing.map(w=>`
+        <div class="writing-item">
+          <div>
+            <div class="writing-title" ${w.url?`onclick="window.open('${w.url}')"`:''}>${w.title}</div>
+            <div class="writing-meta">${w.tag} · ${w.readTime}</div>
+          </div>
+          <div class="writing-date">${w.date}</div>
+        </div>`).join('')}
+    </div>
+    <p style="font-family:var(--mono);font-size:11px;color:var(--soft);margin-top:28px;">← more posts coming soon. this is a living section.</p>`;
+}
+
+function renderContact() {
+  const c = CONFIG.contact;
+  document.getElementById('contact').innerHTML = `
+    <div class="contact-wrap">
+      <div class="contact-intro">
+        <h2>${c.headline}</h2>
+        <p>${c.intro}</p>
+        <div class="contact-links">
+          <a href="https://${c.github}"   class="contact-link" target="_blank" rel="noopener"><i class="ti ti-brand-github" aria-hidden="true"></i>${c.github}</a>
+          <a href="https://${c.linkedin}" class="contact-link" target="_blank" rel="noopener"><i class="ti ti-brand-linkedin" aria-hidden="true"></i>${c.linkedin}</a>
+          <a href="mailto:${c.email}"     class="contact-link"><i class="ti ti-mail" aria-hidden="true"></i>${c.email}</a>
+        </div>
+      </div>
+      <div>
+        <div class="form-group"><label for="f-name">name</label><input id="f-name" type="text" placeholder="Your name" /></div>
+        <div class="form-group"><label for="f-email">email</label><input id="f-email" type="email" placeholder="your@email.com" /></div>
+        <div class="form-group"><label for="f-topic">what's this about</label>
+          <select id="f-topic">${c.topics.map(t=>`<option>${t}</option>`).join('')}</select>
+        </div>
+        <div class="form-group"><label for="f-msg">message</label><textarea id="f-msg" placeholder="What's on your mind?"></textarea></div>
+        <button class="btn-primary" id="send-btn" onclick="handleSend()">send message →</button>
+      </div>
+    </div>`;
+}
+
+function show(id) {
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('visible'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById(id).classList.add('visible');
+  document.getElementById('nav-'+id).classList.add('active');
+  document.getElementById('nav-links').classList.remove('open');
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+document.getElementById('hamburger').addEventListener('click', ()=>{
+  document.getElementById('nav-links').classList.toggle('open');
+});
+
+function handleSend() {
+  const name  = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const msg   = document.getElementById('f-msg').value.trim();
+  const btn   = document.getElementById('send-btn');
+  if (!name||!email||!msg) {
+    btn.textContent='please fill in all fields';
+    btn.style.background='#2d5c3a';
+    setTimeout(()=>{ btn.textContent='send message →'; btn.style.background=''; },2500);
+    return;
+  }
+  btn.textContent='message sent ✓';
+  btn.style.background='#5ec47a';
+  btn.style.color='#0a0f0c';
+  setTimeout(()=>{ btn.textContent='send message →'; btn.style.background=''; btn.style.color=''; },3500);
+}
+
+renderAbout(); renderWork(); renderProjects();
+renderInterests(); renderWriting(); renderContact();
+</script>
+</body>
+</html>
