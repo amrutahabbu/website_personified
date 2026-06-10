@@ -151,6 +151,35 @@
       footer { flex-direction: column; gap: 8px; text-align: center; }
     }
     @media (max-width: 400px) { .interests-grid { grid-template-columns: 1fr; } }
+
+    /* GROWTH */
+    .growth-intro { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 640px; margin-bottom: 48px; }
+    .growth-company-block { margin-bottom: 60px; }
+    .growth-company-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px; }
+    .growth-company-name { font-family: var(--serif); font-size: 22px; color: var(--text); }
+    .growth-company-tenure { font-family: var(--mono); font-size: 11px; color: var(--accent2); letter-spacing: 0.06em; }
+    .growth-chart-wrap { position: relative; margin-bottom: 40px; }
+    .growth-svg { width: 100%; display: block; }
+    .growth-milestones { display: flex; flex-direction: column; gap: 0; }
+    .growth-milestone { display: grid; grid-template-columns: 110px 18px 1fr; gap: 0 16px; align-items: start; padding: 0 0 28px; position: relative; }
+    .growth-milestone:last-child { padding-bottom: 0; }
+    .growth-ms-time { font-family: var(--mono); font-size: 10px; color: var(--soft); letter-spacing: 0.04em; padding-top: 3px; text-align: right; }
+    .growth-ms-spine { display: flex; flex-direction: column; align-items: center; }
+    .growth-ms-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent2); background: var(--bg); flex-shrink: 0; margin-top: 4px; transition: background 0.2s; }
+    .growth-ms-dot.lit { background: var(--accent); border-color: var(--accent); }
+    .growth-ms-line { flex: 1; width: 1px; background: var(--border); margin-top: 4px; min-height: 24px; }
+    .growth-milestone:last-child .growth-ms-line { display: none; }
+    .growth-ms-body { padding-top: 2px; }
+    .growth-ms-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .growth-ms-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .growth-ms-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .growth-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+    .growth-nav-cta { margin-top: 40px; display: flex; gap: 16px; }
+    .growth-nav-btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--muted); background: var(--surface); border: 1px solid var(--border2); border-radius: 20px; padding: 8px 18px; cursor: pointer; text-decoration: none; transition: color 0.2s, border-color 0.2s; }
+    .growth-nav-btn:hover { color: var(--accent); border-color: var(--accent2); }
+    .work-growth-link { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .work-growth-link a { font-family: var(--mono); font-size: 11px; color: var(--accent2); text-decoration: none; letter-spacing: 0.05em; cursor: pointer; transition: color 0.2s; }
+    .work-growth-link a:hover { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -184,25 +213,96 @@ const CONFIG = {
 
   work: [
     {
-      date:    "2022 — present",
+      date:    "2024 — present",
       role:    "Software Engineer Senior",
-      company: "Your Current Company",
-      desc:    "Leading design and delivery of core platform services. Partnering with product and design to define roadmap, while mentoring early-career engineers through growth milestones. Driving architectural decisions on distributed data pipelines serving millions of events daily.",
-      skills:  ["Java", "Kafka", "Kubernetes", "PostgreSQL", "System Design", "Tech Lead"]
+      company: "Optimized Payments",
+      desc:    "Where I get to build at the frontier. I've spent this chapter architecting a cloud-native payments platform on Azure and, more recently, embedding AI deeply into how the product works — not as an experiment, but as production infrastructure. I built a client-facing chatbot backed by MCP servers with Snowflake connectivity, with row-level security enforced at the MCP layer so each tenant only ever sees their own data. I've driven data pipelines for decline recovery, anomaly detection, and spend forecasting, and wired it all into observability tooling through Azure Monitor and Kibana. I also own the entire Auth0 implementation — defining which clients can access the platform, managing authentication flows, and enforcing security policies at the identity layer. Claude Code became a genuine accelerator in this work — for pipeline scaffolding, test generation, and secure code review. The result: clients reduced their dependency on consultant hours by 30% and gained self-serve insight capabilities they didn't have before.",
+      skills:  ["Java", "Python", "Azure", "Snowflake", "MCP", "LLMs", "Terraform", "PostgreSQL", "CI/CD"]
     },
     {
-      date:    "2019 — 2022",
-      role:    "Software Engineer II",
-      company: "Previous Company",
-      desc:    "Owned backend microservices for a high-traffic consumer platform. Reduced p99 latency by 40% through targeted profiling and caching strategy. First engineer on the team to introduce structured incident retrospectives that became org-wide practice.",
-      skills:  ["Python", "Redis", "AWS", "REST APIs", "On-call"]
+      date:    "2020 — 2023",
+      role:    "Senior Software Specialist",
+      company: "FIS Global",
+      desc:    "This role was equal parts engineering and leadership. I owned the architecture and delivery of high-throughput distributed payment systems processing 250 TPS in a regulated financial environment — and I was accountable for the team doing it. Seven releases shipped with zero security vulnerabilities. We improved production deployment to achieve a 90% reduction in downtime with zero traffic loss. I introduced SAST tooling (Blackduck, OWASP, SonarQube) into CI/CD pipelines as a quality gate, designed reusable microservice libraries grounded in single-responsibility principles, and mentored engineers on architectural standards. I also coordinated our team's participation in PI Planning events with 200+ attendees — an exercise in alignment as much as engineering.",
+      skills:  ["Java", "Spring", "Microservices", "Splunk", "Jenkins", "SAFe", "SAST", "DORA Metrics"]
     },
     {
-      date:    "2017 — 2019",
-      role:    "Software Engineer",
-      company: "Early Career Company",
-      desc:    "Joined as a new grad. Shipped features across the full stack, pair-programmed extensively, and fell in love with the craft of software engineering. Had the kind of mentors that changed my whole trajectory.",
-      skills:  ["JavaScript", "React", "Node.js", "SQL"]
+      date:    "2014 — 2020",
+      role:    "Lead Application Developer",
+      company: "TIETOEvry",
+      desc:    "Six years where I grew from engineer to lead. I contributed to enterprise application architecture across a long product roadmap — prioritizing 100+ features against shifting business goals, maintaining production reliability under strict SLA requirements, and initiating the team's first automation and predictive analytics initiatives. This is where I learned that the most important skill in engineering isn't writing code — it's understanding what problem you're actually solving, and for whom.",
+      skills:  ["Enterprise Architecture", "Java", "Automation", "Analytics", "SLA Management", "Product Roadmap"]
+    }
+  ],
+
+  growth: [
+    {
+      company: "FIS Global",
+      tenure:  "Aug 2020 — Jun 2023",
+      milestones: [
+        {
+          time:  "months 1–4",
+          title: "Joining & contributing",
+          desc:  "Joined as a development specialist in a large regulated fintech. Ramped up fast — learning the codebase, picking up Java microservices, and shipping my first production contributions within weeks. Getting my hands dirty was the priority.",
+          pills: ["Java", "Spring", "Microservices"]
+        },
+        {
+          time:  "months 4–10",
+          title: "Accountable for my first delivery",
+          desc:  "Took ownership of a full project delivery end-to-end. Defined scope, coordinated with stakeholders, and shipped it with zero defects. First real taste of what it means to be accountable — not just a contributor.",
+          pills: ["Project Delivery", "Stakeholder Alignment"]
+        },
+        {
+          time:  "months 10–14",
+          title: "Expanding scope — two projects in parallel",
+          desc:  "Took on two concurrent projects while maintaining the first. The challenge wasn't the code — it was the context switching, prioritization, and keeping quality consistent across both tracks.",
+          pills: ["Parallel Delivery", "Prioritization"]
+        },
+        {
+          time:  "months 14–36",
+          title: "Planning, architecting, leading",
+          desc:  "Became the person in the room shaping solutions — not just building them. Owned requirement grooming, solution architecture, and implementation across the team. Led 7 production releases with zero vulnerabilities and 250 TPS throughput, all while enforcing development standards, SAST pipelines, testing strategy, and deployment reliability. Also coordinated PI Planning for 200+ participants.",
+          pills: ["Solution Architecture", "SAST", "DORA Metrics", "SAFe", "Mentorship", "SonarQube"],
+          lit: true
+        }
+      ]
+    },
+    {
+      company: "Optimized Payments",
+      tenure:  "May 2024 — Present",
+      milestones: [
+        {
+          time:  "month 1",
+          title: "First delivery — ingestion pipeline",
+          desc:  "Joined as a senior engineer and shipped a production data ingestion project within the first month. No ramp-up runway — just context gathered fast, architecture understood, and delivery done.",
+          pills: ["Java", "PostgreSQL", "Snowflake"]
+        },
+        {
+          time:  "month 2",
+          title: "Hands-on with Terraform",
+          desc:  "Took over infrastructure-as-code responsibilities. Built repeatable, version-controlled Azure environments from scratch using Terraform — establishing the IaC baseline the team still runs on.",
+          pills: ["Terraform", "Azure", "IaC"]
+        },
+        {
+          time:  "months 2–8",
+          title: "Infrastructure owner across 5 projects + platform",
+          desc:  "Became responsible for the infra of five concurrent client projects and the core Harmonize platform. Designed CI/CD pipelines, managed Azure Functions migration to Java, and owned the Auth0 implementation — controlling which clients can access the platform, authentication flows, and per-tenant security policies.",
+          pills: ["Azure Pipelines", "Auth0", "CI/CD", "Microservices", "Java"]
+        },
+        {
+          time:  "months 8–14",
+          title: "Solutions engineering & full integration",
+          desc:  "Stepped into solutions engineering — connecting all the pieces across the platform. Owned backend development, data pipeline design, product analysis, and integration across ingestion, feature tables, BI, and client-facing layers. The platform started functioning as a coherent product, not just a set of services.",
+          pills: ["Solutions Engineering", "BE Development", "Snowpark", "RabbitMQ", "Snowpipes"]
+        },
+        {
+          time:  "months 14+",
+          title: "AI-first — chatbot delivered on the same platform",
+          desc:  "Merged AI into the core product. Built production ML/data pipelines for decline recovery, anomaly detection, and spend forecasting. Then designed and shipped a client-facing AI chatbot backed by MCP servers with Snowflake connectivity and row-level security — all on the same platform I'd built out from day one. Claude Code became an accelerator throughout: pipeline scaffolding, test generation, secure code review. Clients cut consultant dependency by 30%.",
+          pills: ["MCP", "LLMs", "Claude Code", "Azure Monitor", "Kibana", "AI Observability"],
+          lit: true
+        }
+      ]
     }
   ],
 
@@ -271,6 +371,7 @@ const CONFIG = {
     <ul class="nav-links" id="nav-links">
       <li><a onclick="show('about')"     id="nav-about"     class="active">about</a></li>
       <li><a onclick="show('work')"      id="nav-work">work</a></li>
+      <li><a onclick="show('growth')"    id="nav-growth">growth</a></li>
       <li><a onclick="show('projects')"  id="nav-projects">projects</a></li>
       <li><a onclick="show('interests')" id="nav-interests">interests</a></li>
       <li><a onclick="show('writing')"   id="nav-writing">writing</a></li>
@@ -280,6 +381,7 @@ const CONFIG = {
 
   <section id="about" class="visible"></section>
   <section id="work"></section>
+  <section id="growth"></section>
   <section id="projects"></section>
   <section id="interests"></section>
   <section id="writing"></section>
@@ -358,6 +460,47 @@ function renderWork() {
             <div class="work-skills">${w.skills.map(pill).join('')}</div>
           </div>
         </div>`).join('')}
+    </div>
+    <div class="work-growth-link">
+      <a onclick="show('growth')">see how I grew into each of these roles →</a>
+    </div>`;
+}
+
+function renderGrowth() {
+  document.getElementById('growth').innerHTML = `
+    <div class="section-label">growth curve</div>
+    <div style="background:var(--surface);border:1px solid var(--border2);border-left:3px solid var(--accent2);border-radius:10px;padding:20px 24px;margin-bottom:36px;max-width:680px">
+      <p style="font-size:13px;color:var(--muted);line-height:1.85">
+        You'll notice I'm open to both Engineering Manager and Senior/Lead Engineer roles. That's because the work I've done has always lived at the intersection of the two — shipping production systems while shaping the people and processes around them. The designation matters less to me than the scope: am I solving meaningful problems, growing alongside a strong team, and building things that last? That's what I'm looking for. The rest tends to follow.
+      </p>
+    </div>
+    <p class="growth-intro">Titles tell you the destination. This page shows the climb — how scope expanded, what I took on before I was asked, and where each chapter ended relative to where it started. Two companies, one consistent pattern: arrive, deliver, expand, lead.</p>
+    ${CONFIG.growth.map((company, ci) => `
+      <div class="growth-company-block">
+        <div class="growth-company-header">
+          <span class="growth-company-name">${company.company}</span>
+          <span class="growth-company-tenure">${company.tenure}</span>
+        </div>
+        <div class="growth-milestones">
+          ${company.milestones.map((m, mi) => `
+            <div class="growth-milestone">
+              <div class="growth-ms-time">${m.time}</div>
+              <div class="growth-ms-spine">
+                <div class="growth-ms-dot${m.lit ? ' lit' : ''}"></div>
+                <div class="growth-ms-line"></div>
+              </div>
+              <div class="growth-ms-body">
+                <div class="growth-ms-title">${m.title}</div>
+                <div class="growth-ms-desc">${m.desc}</div>
+                <div class="growth-ms-pills">${m.pills.map(pill).join('')}</div>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+      ${ci < CONFIG.growth.length - 1 ? '<hr class="growth-divider">' : ''}`).join('')}
+    <div class="growth-nav-cta">
+      <a class="growth-nav-btn" onclick="show('work')">← back to experience</a>
+      <a class="growth-nav-btn" onclick="show('projects')">see what I build outside work →</a>
     </div>`;
 }
 
@@ -461,7 +604,7 @@ function handleSend() {
   setTimeout(()=>{ btn.textContent='send message →'; btn.style.background=''; btn.style.color=''; },3500);
 }
 
-renderAbout(); renderWork(); renderProjects();
+renderAbout(); renderWork(); renderGrowth(); renderProjects();
 renderInterests(); renderWriting(); renderContact();
 </script>
 </body>
